@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado de Predicción</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 600px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        p {
+            font-size: 22px;
+            color: #555;
+            line-height: 1.5;
+        }
+        .result {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: {% if result == 'SI' %}red{% else %}green{% endif %};
+        }
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .back-button:hover {
+            background-color: #45a049;
+        }
+        ul {
+            text-align: left;
+            margin: 20px 0;
+            padding: 0;
+            list-style-type: none;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Resultado de Predicción</h1>
+        {% if result == 'SI' %}
+        <p>Según nuestro modelo de predicción, hay una probabilidad del <strong>{{ (proba * 100) | round(2) }}%</strong> de que el paciente pueda tener cáncer de pulmón. Se recomienda realizar los siguientes procedimientos:</p>
+        {% if proba >= 0.75 %}
+        <ul>
+            <li>Confirmar diagnóstico con una tomografía computarizada (TC) de alta resolución.</li>
+            <li>Realizar una biopsia pulmonar para evaluación histológica.</li>
+            <li>Referir al paciente a un oncólogo especializado en cáncer de pulmón.</li>
+            <li>Iniciar evaluación para opciones de tratamiento inmediato.</li>
+        </ul>
+        {% elif proba >= 0.50 %}
+        <ul>
+            <li>Realizar una tomografía computarizada (TC) o una resonancia magnética (RM).</li>
+            <li>Evaluar la necesidad de una biopsia basada en los resultados de la imagen.</li>
+            <li>Consultar con un neumólogo para seguimiento y evaluación adicional.</li>
+        </ul>
+        {% elif proba >= 0.25 %}
+        <ul>
+            <li>Realizar una radiografía de tórax y considerar una TC si hay sospecha persistente.</li>
+            <li>Monitorear síntomas y realizar chequeos regulares.</li>
+            <li>Evaluar antecedentes y factores de riesgo del paciente.</li>
+        </ul>
+        {% else %}
+        <ul>
+            <li>Continuar con chequeos médicos regulares y seguimiento de síntomas.</li>
+            <li>Monitorear factores de riesgo y antecedentes médicos del paciente.</li>
+            <li>Fomentar hábitos de vida saludables y evitar factores de riesgo como el tabaquismo.</li>
+        </ul>
+        {% endif %}
+        {% else %}
+        <p>Según nuestro modelo de predicción, hay una probabilidad del <strong>{{ (proba * 100) | round(2) }}%</strong> de que el paciente no tenga cáncer de pulmón. Se recomienda realizar los siguientes procedimientos:</p>
+        <ul>
+            <li>Continuar con chequeos médicos regulares y seguimiento de síntomas.</li>
+            <li>Realizar pruebas de imagen como rayos X o TC de seguimiento según el caso clínico.</li>
+            <li>Monitorear factores de riesgo y antecedentes médicos del paciente.</li>
+            <li>Fomentar hábitos de vida saludables y evitar factores de riesgo como el tabaquismo.</li>
+            <li>Evaluar la necesidad de pruebas adicionales basadas en el historial del paciente.</li>
+        </ul>
+        {% endif %}
+        <a href="/" class="back-button">Volver</a>
+    </div>
+</body>
+</html>

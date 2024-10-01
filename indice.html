@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación de Salud Pulmonar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow-y: hidden;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .form-group div {
+            flex: 0 0 48%;
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        select, input[type="number"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .legend {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #777;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Evaluación de Salud Pulmonar</h1>
+        <form action="/predict" method="POST">
+            <div class="form-group">
+                <div>
+                    <label for="Genero">Género (M/F):</label>
+                    <select id="Genero" name="Genero" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="M">M</option>
+                        <option value="F">F</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="Edad">Edad:</label>
+                    <input type="number" id="Edad" name="Edad" required>
+                </div>
+                <div>
+                    <label for="Fuma">Fuma (Sí/No):</label>
+                    <select id="Fuma" name="Fuma" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="Sí">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="Dedos_amarillos">Dedos amarillos (Sí/No):</label>
+                    <select id="Dedos_amarillos" name="Dedos_amarillos" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="Sí">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="Ansiedad">Ansiedad (Sí/No):</label>
+                    <select id="Ansiedad" name="Ansiedad" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="Sí">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="Presion_de_grupo">Presión de grupo (Sí/No):</label>
+                    <select id="Presion_de_grupo" name="Presion_de_grupo" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="Sí">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="Enfermedad_cronica">Enfermedad crónica (Sí/No):</label>
+                    <select id="Enfermedad_cronica" name="Enfermedad_cronica" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="Sí">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="Fatiga">Fatiga (Sí/No):</label>
+                    <select id="Fatiga" name="Fatiga" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="Sí">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="Alergia">Alergia (Sí/No):</label>
+                    <select id="Alergia" name="Alergia" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="Sí">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="Jadeos">Jadeos (Sí/No):</label>
+                    <select id="Jadeos" name="Jadeos" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="Sí">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="Consumo_de_alcohol">Consumo de alcohol (Sí/No):</label>
+                    <select id="Consumo_de_alcohol" name="Consumo_de_alcohol" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="Sí">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="Tos">Tos (Sí/No):</label>
+                    <select id="Tos" name="Tos" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="Sí">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="Falta_de_aire">Falta de aire (Sí/No):</label>
+                    <select id="Falta_de_aire" name="Falta_de_aire" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="Sí">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="Dificultad_para_tragar">Dificultad para tragar (Sí/No):</label>
+                    <select id="Dificultad_para_tragar" name="Dificultad_para_tragar" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="Sí">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="Dolor_de_pecho">Dolor de pecho (Sí/No):</label>
+                    <select id="Dolor_de_pecho" name="Dolor_de_pecho" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="Sí">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+            </div>
+            <input type="submit" value="Predecir">
+        </form>
+        <div class="legend">
+            Esta herramienta fue diseñada con la finalidad de proporcionar un pronóstico acerca del cáncer de pulmón; sin embargo, no debe tomarse como una verdad absoluta, ya que no ha sido validada en usuarios reales.
+        </div>
+    </div>
+</body>
+</html>
